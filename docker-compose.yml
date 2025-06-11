@@ -1,0 +1,26 @@
+# docker-compose.yml
+
+version: '3.8' # Docker Compose 파일 형식 버전
+
+services:
+  # 프론트엔드 서비스 정의
+  frontend:
+    build: ./webpage # webpage 폴더의 Dockerfile을 사용하여 이미지를 빌드합니다.
+    ports:
+      - "80:80" # 호스트의 80번 포트와 컨테이너의 80번 포트를 연결합니다.
+    volumes:
+      # 개발 중 코드 변경사항을 바로 반영하고 싶을 때 사용합니다.
+      # 주석 처리해도 무방하며, 최종 배포 시에는 보통 사용하지 않습니다.
+      - ./webpage:/usr/share/nginx/html
+
+  # 백엔드 서비스 정의
+  backend:
+    build: ./backend # backend 폴더의 Dockerfile을 사용하여 이미지를 빌드합니다.
+    ports:
+      - "5000:5000" # 호스트의 5000번 포트와 컨테이너의 5000번 포트를 연결합니다.
+    volumes:
+      # 개발 중 코드 변경사항을 바로 반영하고 싶을 때 사용합니다.
+      # 주석 처리해도 무방하며, 최종 배포 시에는 보통 사용하지 않습니다.
+      - ./backend:/app
+    # Flask 개발 서버 대신 Gunicorn을 사용하므로 command는 Dockerfile에 정의했습니다.
+    # command: ["flask", "run", "--host=0.0.0.0", "--port=5000"]
