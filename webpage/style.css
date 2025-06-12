@@ -1,139 +1,378 @@
-/* style.css 파일 */
+
 
 /* 기본 스타일 초기화 및 글꼴 설정 */
 body {
-    font-family: 'Arial', sans-serif; /* 원하는 글꼴로 변경 가능 */
-    line-height: 1.6;
+    font-family: 'Nanum Gothic', sans-serif; /* 본문 글꼴 */
+    line-height: 1.8; /* 줄 간격 더 넓게 */
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4; /* 배경색 */
-    color: #333; /* 기본 글자색 */
+    /* 배경: 아주 연한 회색에 미묘한 질감 또는 패턴 느낌 추가 */
+    background-color: #eef2f7;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23d8e2dc' fill-opacity='0.4' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E"); /* 아주 미묘한 점 패턴 */
+    color: #333;
+    scroll-behavior: smooth;
 }
 
 /* 헤더 스타일 */
 header {
-    background-color: #333; /* 어두운 배경색 */
-    color: #fff; /* 밝은 글자색 */
-    padding: 1rem 0;
+    /* 배경: 고급스러운 녹색-골드 계열 그라데이션 예시 */
+    background: linear-gradient(135deg, #1b5e20 0%, #388e3c 50%, #8bc34a 100%); /* 깊은 녹색에서 밝은 녹색, 약간의 골드 느낌 */
+    color: #fff;
+    padding: 3.5rem 0; /* 상하 패딩 더 증가 */
     text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* 그림자 효과 강화 */
+    margin-bottom: 50px;
+    position: relative; /* 장식 요소 추가를 위한 설정 */
+    overflow: hidden; /* 그라데이션 경계 처리 */
 }
+
+/* 헤더에 미묘한 패턴 오버레이 (선택 사항) */
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-opacity='0.1'%3E%3Cpath fill='%23ffffff' d='M96 0H4c-2.2 0-4 1.8-4 4v92h100V4c0-2.2-1.8-4-4-4z'/%3E%3Cpath fill='%23ffffff' d='M96 0H4c-2.2 0-4 1.8-4 4v92h100V4c0-2.2-1.8-4-4-4z'/%3E%3C/g%3E%3C/svg%3E"); /* 아주 연한 흰색 패턴 */
+    opacity: 0.2; /* 투명도 조절 */
+    pointer-events: none; /* 클릭 이벤트 무시 */
+}
+
 
 header h1 {
     margin: 0;
-    font-size: 2.5rem;
+    font-size: 3.8rem; /* 제목 글자 크기 더 증가 */
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5); /* 텍스트 그림자 강화 */
+    letter-spacing: -1.5px; /* 글자 간격 약간 더 줄임 */
+    position: relative; /* z-index 설정을 위해 */
+    z-index: 1; /* 패턴 오버레이 위로 오게 */
 }
+
+/* ... (나머지 CSS 코드) ... */
+
 
 /* 내비게이션 메뉴 스타일 */
 nav ul {
     padding: 0;
-    list-style: none; /* 목록 기호 제거 */
-    margin-top: 10px;
+    list-style: none;
+    margin-top: 30px; /* 상단 여백 증가 */
 }
 
 nav ul li {
-    display: inline; /* 가로로 나열 */
-    margin: 0 15px;
+    display: inline-block;
+    margin: 0 35px; /* 좌우 여백 증가 */
 }
 
 nav ul li a {
-    color: #fff; /* 링크 글자색 */
-    text-decoration: none; /* 밑줄 제거 */
-    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.4rem; /* 글자 크기 증가 */
+    padding: 12px 0; /* 클릭 영역 확보 */
+    position: relative;
+    opacity: 0.9;
+    transition: opacity 0.3s ease-in-out, transform 0.2s ease; /* 애니메이션 추가 */
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 4px; /* 밑줄 두께 증가 */
+    background-color: #fff;
+    transition: width 0.4s ease-in-out; /* 애니메이션 속도 변경 */
 }
 
 nav ul li a:hover {
-    text-decoration: underline; /* 마우스 오버 시 밑줄 */
+    opacity: 1;
+    transform: translateY(-3px); /* 호버 시 살짝 위로 이동 */
+}
+
+nav ul li a:hover::after {
+    width: 100%;
 }
 
 /* 메인 콘텐츠 영역 스타일 */
 main {
-    padding: 20px;
-    max-width: 900px; /* 최대 너비 설정 */
-    margin: 20px auto; /* 가운데 정렬 및 상하 여백 */
-    background-color: #fff; /* 흰색 배경 */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
-    border-radius: 8px; /* 모서리 둥글게 */
+    padding: 50px 40px; /* 패딩 증가 */
+    max-width: 1100px; /* 최대 너비 증가 */
+    margin: 0 auto 50px auto; /* 하단 여백 증가 */
+    background-color: #fff;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* 그림자 효과 강화 */
+    border-radius: 15px; /* 모서리 더 둥글게 */
 }
 
-/* 섹션 스타일 (클럽, 브랜드 등) */
-section {
+/* 첫 페이지 (index.html) 특정 스타일 */
+main.index-page {
+    text-align: center;
+}
+
+main.index-page h2 {
+    font-size: 3rem; /* 글자 크기 증가 */
+    color: #1a237e;
     margin-bottom: 30px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #eee; /* 하단 구분선 */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+main.index-page p {
+    font-size: 1.3rem; /* 글자 크기 증가 */
+    margin-bottom: 50px;
+    color: #555;
+}
+
+/* 첫 페이지 링크 컨테이너 */
+.link-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px; /* 간격 증가 */
+    flex-wrap: wrap;
+    margin-top: 50px;
+}
+
+.link-item {
+    background: linear-gradient(135deg, #e8f5e9, #c8e6c9); /* 연한 녹색 그라데이션 배경 */
+    padding: 35px; /* 패딩 증가 */
+    border-radius: 12px; /* 모서리 둥글게 */
+    text-decoration: none;
+    color: #1b5e20;
+    font-size: 1.4rem; /* 글자 크기 증가 */
+    font-weight: 700;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease; /* 애니메이션 속도 변경 */
+    width: 300px; /* 항목 너비 증가 */
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); /* 그림자 효과 */
+    border: 1px solid #a5d6a7; /* 테두리 색상 변경 */
+    position: relative; /* 애니메이션을 위한 설정 */
+    overflow: hidden; /* 배경 그라데이션 애니메이션을 위한 설정 */
+}
+
+/* 링크 아이템 호버 시 배경 그라데이션 이동 효과 */
+.link-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #c8e6c9, #e8f5e9); /* 반대 방향 그라데이션 */
+    opacity: 0; /* 초기 투명 */
+    transition: opacity 0.4s ease;
+    z-index: -1; /* 뒤로 보내기 */
+}
+
+.link-item:hover::before {
+    opacity: 1; /* 호버 시 나타나게 */
+}
+
+
+.link-item:hover {
+    transform: translateY(-10px); /* 더 위로 이동 */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25); /* 그림자 강화 */
+}
+
+
+/* 섹션 스타일 (클럽, 브랜드 등) - 카드 형태로 개선 */
+section {
+    margin-bottom: 40px;
+    padding: 35px; /* 섹션 내부 패딩 증가 */
+    background-color: #fefefe; /* 더 밝은 배경색 */
+    border-radius: 12px; /* 모서리 둥글게 */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* 섹션 그림자 */
+    border: 1px solid #e0e0e0; /* 연한 테두리 */
 }
 
 section:last-child {
-    border-bottom: none; /* 마지막 섹션은 구분선 없음 */
+    margin-bottom: 0;
+    border-bottom: none;
 }
 
+
 section h3 {
-    color: #555;
+    color: #007b1e;
     margin-top: 0;
+    margin-bottom: 25px; /* 하단 여백 증가 */
+    font-size: 2.4rem; /* 글자 크기 증가 */
+    border-left: 8px solid #388e3c; /* 왼쪽 테두리 두께 증가 */
+    padding-left: 20px; /* 왼쪽 패딩 증가 */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
 }
+
+section h4 {
+     color: #555;
+     margin-top: 30px; /* 상단 여백 증가 */
+     margin-bottom: 15px; /* 하단 여백 증가 */
+     font-size: 1.6rem; /* 글자 크기 증가 */
+     border-bottom: 1px dashed #bbb; /* 점선 하단 테두리 색상 변경 */
+     padding-bottom: 8px;
+}
+
 
 /* 목록 스타일 (선택 가이드 등) */
 ul {
-    padding-left: 20px;
+    padding-left: 35px; /* 왼쪽 패딩 증가 */
+    list-style: disc;
 }
 
 ul li {
-    margin-bottom: 10px;
+    margin-bottom: 18px; /* 하단 여백 증가 */
 }
+
+/* 이미지 스타일 */
+main img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 35px auto; /* 상하 여백 증가 */
+    border-radius: 12px; /* 모서리 둥글게 */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.18); /* 그림자 효과 강화 */
+    border: 1px solid #ccc; /* 이미지 테두리 */
+}
+
 
 /* 퀴즈 컨테이너 스타일 */
 #quiz-container .question {
-    margin-bottom: 20px;
-    padding: 15px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    margin-bottom: 35px; /* 하단 여백 증가 */
+    padding: 30px; /* 패딩 증가 */
+    background-color: #e8f5e9;
+    border: 1px solid #c8e6c9;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 #quiz-container .options label {
-    display: block; /* 선택지를 세로로 나열 */
-    margin-bottom: 8px;
-    cursor: pointer; /* 마우스 커서 변경 */
+    display: block;
+    margin-bottom: 15px; /* 하단 여백 증가 */
+    cursor: pointer;
+    font-size: 1.2rem; /* 글자 크기 증가 */
+    padding: 10px 12px; /* 패딩 증가 */
+    border-radius: 6px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    border: 1px solid transparent;
+}
+
+#quiz-container .options label:hover {
+    background-color: #dcedc8;
+    border-color: #aed581;
 }
 
 #quiz-container .options input[type="radio"] {
-    margin-right: 5px;
+    margin-right: 12px; /* 오른쪽 여백 증가 */
 }
 
 /* 버튼 스타일 */
 button#submit-quiz {
-    display: block; /* 블록 요소로 만들어 여백 적용 용이 */
-    margin: 20px auto; /* 가운데 정렬 */
-    padding: 10px 20px;
-    font-size: 1rem;
+    display: block;
+    margin: 50px auto; /* 상하 여백 증가 */
+    padding: 18px 35px; /* 패딩 증가 */
+    font-size: 1.4rem; /* 글자 크기 증가 */
     color: #fff;
-    background-color: #5cb85c; /* 녹색 배경 */
+    background-color: #388e3c;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px; /* 모서리 둥글게 */
     cursor: pointer;
-    transition: background-color 0.3s ease; /* 부드러운 색상 변화 */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
 button#submit-quiz:hover {
-    background-color: #4cae4c; /* 마우스 오버 시 더 진한 녹색 */
+    background-color: #1b5e20;
+    transform: translateY(-5px); /* 더 위로 이동 */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
+
+button#submit-quiz:active {
+     transform: translateY(0);
+     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+}
+
 
 /* 퀴즈 결과 스타일 */
 #quiz-result {
-    margin-top: 20px;
-    padding: 15px;
-    background-color: #e9e9e9;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    margin-top: 40px; /* 상단 여백 증가 */
+    padding: 30px; /* 패딩 증가 */
+    background-color: #c8e6c9;
+    border: 1px solid #a5d6a7;
+    border-radius: 12px;
     text-align: center;
+    font-size: 1.4rem; /* 글자 크기 증가 */
+    font-weight: 700;
+    color: #1b5e20;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 
 /* 푸터 스타일 */
 footer {
     text-align: center;
-    padding: 1rem 0;
-    margin-top: 20px;
-    background-color: #333;
-    color: #fff;
-    font-size: 0.9rem;
+    padding: 3rem 0; /* 상하 패딩 증가 */
+    margin-top: 60px; /* 상단 여백 증가 */
+    background-color: #263238;
+    color: #b0bec5;
+    font-size: 1.1rem; /* 글자 크기 증가 */
+}
+
+/* 반응형 디자인을 위한 미디어 쿼리 */
+@media (max-width: 768px) {
+    header {
+        padding: 2rem 0;
+    }
+    header h1 {
+        font-size: 2.8rem;
+    }
+    nav ul li {
+        margin: 0 15px;
+    }
+    nav ul li a {
+        font-size: 1.2rem;
+    }
+    main {
+        padding: 20px;
+    }
+    main.index-page h2 {
+        font-size: 2.2rem;
+    }
+    main.index-page p {
+        font-size: 1.1rem;
+    }
+    .link-item {
+        width: 90%;
+        margin-bottom: 20px;
+        padding: 25px;
+        font-size: 1.2rem;
+    }
+    .link-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+    }
+    section {
+        padding: 25px;
+    }
+    section h3 {
+        font-size: 2rem;
+    }
+    section h4 {
+        font-size: 1.4rem;
+    }
+    #quiz-container .question {
+        padding: 20px;
+    }
+    #quiz-container .options label {
+        font-size: 1.1rem;
+    }
+    button#submit-quiz {
+        padding: 15px 30px;
+        font-size: 1.3rem;
+    }
+    #quiz-result {
+        font-size: 1.3rem;
+    }
+    footer {
+        padding: 2rem 0;
+    }
 }
